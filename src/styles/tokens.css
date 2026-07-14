@@ -1,0 +1,81 @@
+/* ============================================================
+   IDENTIDADE VISUAL
+   Paleta derivada da logo (preto + marrom), tom claro, "papel".
+   Tipografia: Fraunces (display, com caráter) + Inter (corpo/UI).
+   Assinatura: cartão de imóvel "foto-primeiro" com faixa inferior
+   que sobe no hover, e uma fita ("washi tape") marrom no canto
+   dos anúncios em Destaque — referência visual discreta ao papel
+   de plantas/fichas de imóveis, sem poluir o visual instagramável.
+   ============================================================ */
+
+:root {
+  /* cor */
+  --bg: #faf7f2;            /* fundo geral — papel claro e quente */
+  --bg-card: #ffffff;       /* fundo dos cartões */
+  --ink: #211b16;           /* texto principal — preto quente (logo) */
+  --ink-soft: #6b6259;      /* texto secundário */
+  --brown-deep: #4a2e1f;    /* marrom escuro (logo) — ações primárias */
+  --brown-mid: #8c5b3a;     /* marrom médio — accent, hover, ícones */
+  --sand: #d9c7ae;          /* areia clara — tags, fita de destaque */
+  --line: #e7dfd3;          /* divisórias sutis */
+  --success: #3f6b4f;
+  --danger: #a23e3e;
+
+  /* tipografia */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+
+  /* layout */
+  --radius: 4px;
+  --radius-card: 2px;
+  --shadow-card: 0 1px 2px rgba(33, 27, 22, 0.06), 0 8px 24px rgba(33, 27, 22, 0.06);
+  --container: 1160px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brown-mid);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
