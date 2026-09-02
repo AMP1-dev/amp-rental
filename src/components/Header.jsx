@@ -1,13 +1,38 @@
-import React, { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { User, Menu, X, PlusCircle, Home, Key, Tag, Phone } from 'lucide-react'
-import { EMPRESA_CONFIG } from '../config/empresa'
+import React, { useState, useEffect } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { User, Menu, X, PlusCircle, Home, Key, Tag, Phone, Settings } from 'lucide-react'
+import { EMPRESA_CONFIG, useEmpresaConfig } from '../config/empresa'
+import { obterUsuarioAtual } from '../lib/auth'
+import AdminPerfilModal from './AdminPerfilModal'
 
 export default function Header() {
   const [menuAberto, setMenuAberto] = useState(false)
+  const [modalPerfilAberto, setModalPerfilAberto] = useState(false)
+  const [usuarioLogado, setUsuarioLogado] = useState(null)
+  const empresa = useEmpresaConfig()
   const location = useLocation()
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    let ativo = true
+    obterUsuarioAtual().then((u) => {
+      if (ativo) setUsuarioLogado(u)
+    })
+    return () => {
+      ativo = false
+    }
+  }, [location.pathname])
 
   const linkAtivo = (path) => location.pathname === path
+
+  function handleCliqueBoneco() {
+    if (usuarioLogado || location.pathname.startsWith('/admin')) {
+      setModalPerfilAberto(true)
+    } else {
+      navigate('/admin/login')
+    }
+  }
+
 
   return (
     <header className="blois-header">
@@ -24,16 +49,16 @@ export default function Header() {
 
         {/* Logo Blois (Centro no Mobile, Esquerda no Desktop) */}
         <Link to="/" className="blois-logo">
-          {EMPRESA_CONFIG.logoUrl ? (
+          {empresa.logoUrl ? (
             <img
-              src={EMPRESA_CONFIG.logoUrl}
-              alt={EMPRESA_CONFIG.nomeFantasia}
+              src={empresa.logoUrl}
+              alt={empresa.nomeFantasia}
               style={{ maxHeight: '40px', objectFit: 'contain' }}
             />
           ) : (
             <>
               <span className="blois-logo__title">Blois</span>
-              <span className="blois-logo__subtitle">Aqui se faz negócio</span>
+              <span className="blois-logo__subtitle">{empresa.slogan}</span>
             </>
           )}
         </Link>
@@ -65,7 +90,7 @@ export default function Header() {
             Aluguel
           </Link>
           <a
-            href="https://wa.me/5519999999999?text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20um%20corretor%20da%20Blois%20Im%C3%B3veis"
+            href={`https://wa.me/${empresa.whatsapp}?text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20um%20corretor%20da%20Blois%20Im%C3%B3veis`}
             target="_blank"
             rel="noopener noreferrer"
             className="blois-nav__link"
@@ -74,7 +99,7 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* Actions (CRECI + Anunciar + Login) */}
+        {/* Actions (CRECI + Anunciar + Boneco Perfil/Admin) */}
         <div className="blois-header__actions" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
           <span
             className="blois-desktop-only"
@@ -90,7 +115,7 @@ export default function Header() {
               whiteSpace: 'nowrap',
             }}
           >
-            {EMPRESA_CONFIG.creci}
+            {empresa.creci}
           </span>
 
           <Link to="/anunciar" className="blois-btn-anunciar blois-desktop-only">
@@ -98,14 +123,22 @@ export default function Header() {
             <span>Anunciar Imóvel</span>
           </Link>
 
-          <Link
-            to="/admin/login"
+          {/* Boneco: Abre o modal de gestão e troca de senha se logado */}
+          <button
+            type="button"
+            onClick={handleCliqueBoneco}
             className="blois-btn-icon"
-            title="Acesso Corretor / Admin"
-            aria-label="Painel Administrativo"
+            title={usuarioLogado || location.pathname.startsWith('/admin') ? "Gestão da Imobiliária, CRECI & Senha" : "Acesso Corretor / Admin"}
+            aria-label="Painel Administrativo e Perfil"
+            style={{
+              background: (usuarioLogado || location.pathname.startsWith('/admin')) ? '#F5EFE6' : '#ECE7DE',
+              border: (usuarioLogado || location.pathname.startsWith('/admin')) ? '1px solid #D5CEC5' : 'none',
+              cursor: 'pointer',
+              color: '#1A1817'
+            }}
           >
             <User size={18} />
-          </Link>
+          </button>
         </div>
 
       </div>
@@ -148,7 +181,7 @@ export default function Header() {
               color: '#1A1817',
             }}
           >
-            <Tag size={18} color="#C59B27" /> Comprar (Venda)
+            <Tag size={18} color="#C59B27" /> Comprar Imóveis
           </Link>
           <Link
             to="/?finalidade=Locação"
@@ -162,7 +195,7 @@ export default function Header() {
               color: '#1A1817',
             }}
           >
-            <Key size={18} color="#C59B27" /> Alugar (Locação)
+            <Key size={18} color="#C59B27" /> Alugar Imóveis
           </Link>
           <Link
             to="/anunciar"
@@ -179,7 +212,7 @@ export default function Header() {
             <PlusCircle size={18} color="#C59B27" /> Anunciar meu imóvel
           </Link>
           <a
-            href="https://wa.me/5519999999999?text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20um%20corretor%20da%20Blois%20Im%C3%B3veis"
+            href={`https://wa.me/${empresa.whatsapp}?text=Ol%C3%A1,%20gostaria%20de%20falar%20com%20um%20corretor%20da%20Blois%20Im%C3%B3veis`}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMenuAberto(false)}
@@ -194,7 +227,38 @@ export default function Header() {
           >
             <Phone size={18} color="#C59B27" /> Falar com o Corretor
           </a>
+
+          {/* Opção de Gestão / Perfil no Menu Mobile */}
+          <button
+            type="button"
+            onClick={() => {
+              setMenuAberto(false)
+              handleCliqueBoneco()
+            }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.75rem',
+              fontSize: '1rem',
+              fontWeight: 600,
+              color: '#1A1817',
+              background: '#FAF7F2',
+              padding: '0.75rem 1rem',
+              borderRadius: '8px',
+              border: '1px solid #EAE6DF',
+              cursor: 'pointer',
+              marginTop: '0.5rem'
+            }}
+          >
+            <Settings size={18} color="#C59B27" />
+            <span>{usuarioLogado || location.pathname.startsWith('/admin') ? 'Gestão da Imobiliária, CRECI & Senha' : 'Painel do Corretor / Login'}</span>
+          </button>
         </div>
+      )}
+
+      {/* Modal de Gestão da Imobiliária & Perfil */}
+      {modalPerfilAberto && (
+        <AdminPerfilModal onFechar={() => setModalPerfilAberto(false)} />
       )}
     </header>
   )

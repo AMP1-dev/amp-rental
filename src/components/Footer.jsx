@@ -1,9 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { EMPRESA_CONFIG } from '../config/empresa'
+import { useEmpresaConfig } from '../config/empresa'
 import { ShieldCheck, MapPin, Phone, Mail, Clock, MessageCircle, Building2, FileText } from 'lucide-react'
 
 export default function Footer() {
+  const empresa = useEmpresaConfig()
+
   return (
     <footer className="blois-footer">
       <div className="blois-footer__inner">
@@ -11,10 +13,10 @@ export default function Footer() {
         <div className="blois-footer__grid-top">
           {/* Coluna 1: Marca & Descrição */}
           <div className="blois-footer__col-brand">
-            {EMPRESA_CONFIG.logoUrl ? (
+            {empresa.logoUrl ? (
               <img
-                src={EMPRESA_CONFIG.logoUrl}
-                alt={EMPRESA_CONFIG.nomeFantasia}
+                src={empresa.logoUrl}
+                alt={empresa.nomeFantasia}
                 style={{ maxHeight: '44px', objectFit: 'contain', marginBottom: '0.75rem' }}
               />
             ) : (
@@ -23,10 +25,11 @@ export default function Footer() {
                   Blois
                 </span>
                 <span style={{ color: '#C59B27', fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                  {EMPRESA_CONFIG.slogan}
+                  {empresa.slogan}
                 </span>
               </div>
             )}
+
             <p style={{ color: '#9E948A', fontSize: '0.88rem', lineHeight: '1.6', margin: '0.5rem 0 0', maxWidth: '360px' }}>
               Assessoria imobiliária completa e intermediação segura para compra, venda e locação de imóveis residenciais, comerciais e áreas especiais.
             </p>
@@ -54,24 +57,24 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.88rem', color: '#C7BFB5' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 <Phone size={16} color="#C59B27" style={{ flexShrink: 0 }} />
-                <span>{EMPRESA_CONFIG.telefone}</span>
+                <span>{empresa.telefone}</span>
               </div>
               <a
-                href={`https://wa.me/${EMPRESA_CONFIG.whatsapp}?text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20im%C3%B3veis`}
+                href={`https://wa.me/${empresa.whatsapp}?text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20im%C3%B3veis`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#25D366', fontWeight: 600, textDecoration: 'none' }}
               >
                 <MessageCircle size={17} style={{ flexShrink: 0 }} />
-                <span>WhatsApp: {EMPRESA_CONFIG.whatsappFormatado}</span>
+                <span>WhatsApp: {empresa.whatsappFormatado}</span>
               </a>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
                 <Mail size={16} color="#C59B27" style={{ flexShrink: 0 }} />
-                <span>{EMPRESA_CONFIG.email}</span>
+                <span>{empresa.email}</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#8C827A', fontSize: '0.82rem' }}>
                 <Clock size={15} style={{ flexShrink: 0 }} />
-                <span>{EMPRESA_CONFIG.horarioAtendimento}</span>
+                <span>{empresa.horarioAtendimento}</span>
               </div>
             </div>
           </div>
@@ -85,11 +88,11 @@ export default function Footer() {
               <span>REGULAMENTADO CRECI</span>
             </div>
             <span style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '0.95rem' }}>
-              {EMPRESA_CONFIG.creci}
+              {empresa.creci}
             </span>
             <span className="blois-desktop-only" style={{ color: '#6E665F' }}>•</span>
             <span className="blois-footer__resp-tecnico">
-              {EMPRESA_CONFIG.creciResponsavel}
+              {empresa.creciResponsavel}
             </span>
           </div>
 
@@ -99,7 +102,7 @@ export default function Footer() {
               <Building2 size={15} color="#C59B27" style={{ flexShrink: 0 }} />
               <div>
                 <span className="blois-footer__label">Razão Social:</span>
-                <span className="blois-footer__value">{EMPRESA_CONFIG.razaoSocial}</span>
+                <span className="blois-footer__value">{empresa.razaoSocial}</span>
               </div>
             </div>
 
@@ -107,7 +110,7 @@ export default function Footer() {
               <FileText size={15} color="#C59B27" style={{ flexShrink: 0 }} />
               <div>
                 <span className="blois-footer__label">CNPJ:</span>
-                <span className="blois-footer__value">{EMPRESA_CONFIG.cnpj}</span>
+                <span className="blois-footer__value">{empresa.cnpj}</span>
               </div>
             </div>
 
@@ -116,7 +119,7 @@ export default function Footer() {
               <div>
                 <span className="blois-footer__label">Sede / Endereço Físico:</span>
                 <span className="blois-footer__value">
-                  {EMPRESA_CONFIG.endereco} — {EMPRESA_CONFIG.cidade}/{EMPRESA_CONFIG.estado} — CEP {EMPRESA_CONFIG.cep}
+                  {empresa.endereco} — {empresa.cidade}/{empresa.estado} — CEP {empresa.cep}
                 </span>
               </div>
             </div>
@@ -129,9 +132,10 @@ export default function Footer() {
 
         {/* Linha Final de Copyright */}
         <div className="blois-footer__copy">
-          <span>© {new Date().getFullYear()} {EMPRESA_CONFIG.nomeFantasia}. Todos os direitos reservados.</span>
+          <span>© {new Date().getFullYear()} {empresa.nomeFantasia}. Todos os direitos reservados.</span>
           <span style={{ fontSize: '0.78rem', color: '#6E665F' }}>Plataforma Imobiliária Profissional</span>
         </div>
+
       </div>
     </footer>
   )

@@ -12,13 +12,15 @@ import {
 } from '../lib/adminApi'
 import { sair } from '../lib/auth'
 import { useNavigate, Link } from 'react-router-dom'
-import { Plus } from 'lucide-react'
+import { Plus, Settings } from 'lucide-react'
+import AdminPerfilModal from '../components/AdminPerfilModal'
 
 const ABAS = [
   { chave: 'aprovado', rotulo: 'Aprovados' },
   { chave: 'pendente', rotulo: 'Pendentes' },
   { chave: 'reprovado', rotulo: 'Reprovados' },
   { chave: 'planos', rotulo: 'Planos' },
+  { chave: 'configuracoes', rotulo: '⚙️ Configurações & CRECI' },
 ]
 
 export default function AdminPainel() {
@@ -29,11 +31,18 @@ export default function AdminPainel() {
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState(null)
   const [anuncioEditando, setAnuncioEditando] = useState(null)
+  const [modalPerfilAberto, setModalPerfilAberto] = useState(false)
 
   useEffect(() => {
+    if (aba === 'configuracoes') {
+      setModalPerfilAberto(true)
+      setAba('aprovado')
+      return
+    }
     carregarAba()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [aba])
+
 
   async function carregarAba() {
     setCarregando(true)
@@ -97,7 +106,17 @@ export default function AdminPainel() {
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              onClick={() => setModalPerfilAberto(true)}
+              className="botao-secundario"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+            >
+              <Settings size={18} />
+              <span>Dados da Imobiliária, CRECI & Senha</span>
+            </button>
+
             <Link
               to="/anunciar"
               className="botao-primario"
@@ -106,10 +125,12 @@ export default function AdminPainel() {
               <Plus size={18} />
               <span>Cadastrar Novo Imóvel</span>
             </Link>
+
             <button className="botao-secundario admin-sair" onClick={handleSair}>
               Sair
             </button>
           </div>
+
         </div>
 
         <div className="etapas admin-abas" style={{ marginBottom: '2rem' }}>
@@ -153,7 +174,7 @@ export default function AdminPainel() {
           </div>
         )}
 
-        {/* Modal de Edição Visual */}
+        {/* Modal de Edição Visual do Imóvel */}
         {anuncioEditando && (
           <AnuncioEditarModal
             anuncio={anuncioEditando}
@@ -163,8 +184,14 @@ export default function AdminPainel() {
             onFechar={() => setAnuncioEditando(null)}
           />
         )}
+
+        {/* Modal de Gestão da Imobiliária, CRECI & Senha */}
+        {modalPerfilAberto && (
+          <AdminPerfilModal onFechar={() => setModalPerfilAberto(false)} />
+        )}
       </main>
     </>
   )
 }
+
 
