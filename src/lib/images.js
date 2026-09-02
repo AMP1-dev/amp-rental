@@ -17,7 +17,11 @@ export async function getComprovanteUrl(path) {
 
 async function getUrlAssinada(bucket, path) {
   if (!path) return null
+  if (path.startsWith('http://') || path.startsWith('https://')) {
+    return path
+  }
   const chave = `${bucket}/${path}`
+
   if (cache.has(chave)) return cache.get(chave)
 
   const { data, error } = await supabase.storage.from(bucket).createSignedUrl(path, EXPIRA_EM_SEGUNDOS)
