@@ -1657,3 +1657,304 @@
   padding: 1.1rem;
   background: var(--bg-card);
 }
+
+/* ============================================================
+   MODAL DE EDIÇÃO VISUAL DO ANÚNCIO (ADMIN)
+   ============================================================ */
+
+.blois-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 12, 10, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.blois-modal-card {
+  background: #FFFFFF;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+  border: 1px solid #EAE6DF;
+  overflow: hidden;
+}
+
+.blois-modal-header {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid #EAE6DF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FAF8F5;
+}
+
+.blois-modal-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.4rem;
+  color: #1A1817;
+  margin: 0;
+}
+
+.blois-modal-close-btn {
+  background: #ECE7DE;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4A443F;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.blois-modal-close-btn:hover {
+  background: #D9D2C5;
+}
+
+.blois-modal-body {
+  padding: 1.75rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.blois-form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.blois-form-row--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.blois-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.blois-form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #26221F;
+}
+
+.blois-form-input {
+  font-family: inherit;
+  font-size: 0.92rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #D5CEC5;
+  border-radius: 8px;
+  background: #FFFFFF;
+  color: #1A1817;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.blois-form-input:focus {
+  border-color: #1A1817;
+}
+
+.blois-form-textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
+}
+
+/* Fotos Grid no Modal */
+.blois-admin-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.blois-admin-photo-thumb {
+  position: relative;
+  aspect-ratio: 4/3;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #EAE6DF;
+  background: #F4F1EB;
+}
+
+.blois-admin-photo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blois-admin-photo-delete {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: rgba(220, 38, 38, 0.9);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.blois-admin-photo-delete:hover {
+  transform: scale(1.1);
+}
+
+.blois-admin-photo-tag {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.blois-admin-add-photo-bar {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.blois-btn-upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #ECE7DE;
+  color: #1A1817;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.blois-btn-upload:hover {
+  background: #DDD5C7;
+}
+
+.blois-admin-url-box {
+  display: flex;
+  gap: 0.5rem;
+  flex: 1;
+  min-width: 260px;
+}
+
+.blois-btn-add-url {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #26221F;
+  color: #FFFFFF;
+  border: none;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.blois-btn-add-url:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Rodapé e Ações */
+.blois-modal-footer {
+  padding: 1.25rem 1.75rem;
+  border-top: 1px solid #EAE6DF;
+  background: #FAF8F5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.blois-btn-delete-ad {
+  background: #FEE2E2;
+  color: #DC2626;
+  border: 1px solid #FECACA;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+}
+
+.blois-btn-delete-ad:hover {
+  background: #FCA5A5;
+}
+
+.blois-modal-btn-cancel {
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  color: #4B5563;
+  padding: 0.65rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.blois-modal-btn-save {
+  background: #1A1817;
+  border: none;
+  color: #FFFFFF;
+  padding: 0.65rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.blois-modal-btn-save:hover {
+  background: #332D27;
+}
+
+.blois-modal-alert {
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.blois-modal-alert--error {
+  background: #FEF2F2;
+  color: #DC2626;
+  border-bottom: 1px solid #FECACA;
+}
+
+.blois-modal-alert--success {
+  background: #F0FDF4;
+  color: #16A34A;
+  border-bottom: 1px solid #BBF7D0;
+}
+

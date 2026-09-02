@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import AnuncioAdminCard from '../components/AnuncioAdminCard'
 import PlanoEditor from '../components/PlanoEditor'
+import AnuncioEditarModal from '../components/AnuncioEditarModal'
 import {
   listarAnuncios,
   aprovarAnuncio,
@@ -10,22 +11,24 @@ import {
   atualizarPlano,
 } from '../lib/adminApi'
 import { sair } from '../lib/auth'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
+import { Plus } from 'lucide-react'
 
 const ABAS = [
-  { chave: 'pendente', rotulo: 'Pendentes' },
   { chave: 'aprovado', rotulo: 'Aprovados' },
+  { chave: 'pendente', rotulo: 'Pendentes' },
   { chave: 'reprovado', rotulo: 'Reprovados' },
   { chave: 'planos', rotulo: 'Planos' },
 ]
 
 export default function AdminPainel() {
   const navigate = useNavigate()
-  const [aba, setAba] = useState('pendente')
+  const [aba, setAba] = useState('aprovado')
   const [anuncios, setAnuncios] = useState([])
   const [planos, setPlanos] = useState([])
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState(null)
+  const [anuncioEditando, setAnuncioEditando] = useState(null)
 
   useEffect(() => {
     carregarAba()
@@ -36,6 +39,13 @@ export default function AdminPainel() {
     setCarregando(true)
     setErro(null)
     try {
+      if (planos.length === 0) {
+        try {
+          const listaPlanos = await listarPlanosAdmin()
+          setPlanos(listaPlanos)
+        } catch (_) {}
+      }
+
       if (aba === 'planos') {
         setPlanos(await listarPlanosAdmin())
       } else {
@@ -62,6 +72,14 @@ export default function AdminPainel() {
     await atualizarPlano(id, campos)
   }
 
+  async function handleSalvarEdicao() {
+    await carregarAba()
+  }
+
+  async function handleExcluirAnuncio() {
+    await carregarAba()
+  }
+
   async function handleSair() {
     await sair()
     navigate('/admin/login')
@@ -70,15 +88,31 @@ export default function AdminPainel() {
   return (
     <>
       <Header />
-      <main className="container">
-        <div className="admin-topo">
-          <h1 className="forms__titulo">Painel do corretor</h1>
-          <button className="botao-secundario admin-sair" onClick={handleSair}>
-            Sair
-          </button>
+      <main className="container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '2rem 1.5rem 5rem' }}>
+        <div className="admin-topo" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.5rem' }}>
+          <div>
+            <h1 className="forms__titulo" style={{ margin: 0, fontFamily: 'Fraunces, serif' }}>Painel do Corretor</h1>
+            <p style={{ color: '#7A726A', margin: '0.25rem 0 0', fontSize: '0.9rem' }}>
+              Gerencie seus imóveis, fotos, preços, contatos e aprovações.
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center' }}>
+            <Link
+              to="/anunciar"
+              className="botao-primario"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none' }}
+            >
+              <Plus size={18} />
+              <span>Cadastrar Novo Imóvel</span>
+            </Link>
+            <button className="botao-secundario admin-sair" onClick={handleSair}>
+              Sair
+            </button>
+          </div>
         </div>
 
-        <div className="etapas admin-abas">
+        <div className="etapas admin-abas" style={{ marginBottom: '2rem' }}>
           {ABAS.map((a) => (
             <button
               key={a.chave}
@@ -98,13 +132,14 @@ export default function AdminPainel() {
         )}
 
         {!carregando && aba !== 'planos' && (
-          <div className="admin-lista">
+          <div className="admin-lista" style={{ display: 'grid', gap: '1.5rem' }}>
             {anuncios.map((a) => (
               <AnuncioAdminCard
                 anuncio={a}
                 key={a.id}
                 onAprovar={handleAprovar}
                 onReprovar={handleReprovar}
+                onEditar={(anuncio) => setAnuncioEditando(anuncio)}
               />
             ))}
           </div>
@@ -117,7 +152,19 @@ export default function AdminPainel() {
             ))}
           </div>
         )}
+
+        {/* Modal de Edição Visual */}
+        {anuncioEditando && (
+          <AnuncioEditarModal
+            anuncio={anuncioEditando}
+            planos={planos}
+            onSalvar={handleSalvarEdicao}
+            onExcluir={handleExcluirAnuncio}
+            onFechar={() => setAnuncioEditando(null)}
+          />
+        )}
       </main>
     </>
   )
 }
+
