@@ -1,130 +1,136 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { EMPRESA_CONFIG } from '../config/empresa'
-import { ShieldCheck, MapPin, Phone, Mail, Clock, MessageCircle } from 'lucide-react'
+import { ShieldCheck, MapPin, Phone, Mail, Clock, MessageCircle, Building2, FileText } from 'lucide-react'
 
 export default function Footer() {
   return (
     <footer className="blois-footer">
       <div className="blois-footer__inner">
-        {/* Topo do Rodapé: Logo, Slogan e Links de Navegação */}
-        <div className="blois-footer__top">
-          <div style={{ maxWidth: '380px' }}>
+        {/* Topo do Rodapé: 3 Colunas Perfeitamente Alinhadas */}
+        <div className="blois-footer__grid-top">
+          {/* Coluna 1: Marca & Descrição */}
+          <div className="blois-footer__col-brand">
             {EMPRESA_CONFIG.logoUrl ? (
               <img
                 src={EMPRESA_CONFIG.logoUrl}
                 alt={EMPRESA_CONFIG.nomeFantasia}
-                style={{ maxHeight: '48px', objectFit: 'contain', marginBottom: '0.75rem' }}
+                style={{ maxHeight: '44px', objectFit: 'contain', marginBottom: '0.75rem' }}
               />
             ) : (
-              <span style={{ fontFamily: 'Fraunces, serif', fontSize: '2.2rem', fontWeight: 700, color: '#FFFFFF' }}>
-                {EMPRESA_CONFIG.nomeFantasia}
-              </span>
+              <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                <span style={{ fontFamily: 'Fraunces, serif', fontSize: '2.2rem', fontWeight: 700, color: '#FFFFFF', letterSpacing: '-0.02em' }}>
+                  Blois
+                </span>
+                <span style={{ color: '#C59B27', fontSize: '0.78rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  {EMPRESA_CONFIG.slogan}
+                </span>
+              </div>
             )}
-            <p style={{ color: '#C59B27', fontSize: '0.85rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', marginTop: '0.2rem' }}>
-              {EMPRESA_CONFIG.slogan}
-            </p>
-            <p style={{ color: '#A89E94', fontSize: '0.88rem', marginTop: '0.6rem', lineHeight: 1.5 }}>
-              Intermediação e assessoria imobiliária segura para compra, venda e locação de imóveis residenciais, comerciais e rurais.
+            <p style={{ color: '#9E948A', fontSize: '0.88rem', lineHeight: '1.6', margin: '0.5rem 0 0', maxWidth: '360px' }}>
+              Assessoria imobiliária completa e intermediação segura para compra, venda e locação de imóveis residenciais, comerciais e áreas especiais.
             </p>
           </div>
 
-          <div style={{ display: 'flex', gap: '2.5rem', flexWrap: 'wrap' }}>
-            <div>
-              <h4 style={{ color: '#FFFFFF', fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.85rem' }}>Navegação</h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <Link to="/" style={{ color: '#D1CAC3', fontSize: '0.88rem', textDecoration: 'none' }}>Home</Link>
-                <Link to="/?finalidade=Venda" style={{ color: '#D1CAC3', fontSize: '0.88rem', textDecoration: 'none' }}>Comprar Imóvel</Link>
-                <Link to="/?finalidade=Locação" style={{ color: '#D1CAC3', fontSize: '0.88rem', textDecoration: 'none' }}>Alugar Imóvel</Link>
-                <Link to="/anunciar" style={{ color: '#D1CAC3', fontSize: '0.88rem', textDecoration: 'none' }}>Anunciar meu Imóvel</Link>
-                <Link to="/admin/login" style={{ color: '#A89E94', fontSize: '0.82rem', textDecoration: 'none', marginTop: '0.4rem' }}>Acesso do Corretor</Link>
-              </div>
-            </div>
+          {/* Coluna 2: Navegação Rápida */}
+          <div className="blois-footer__col-links">
+            <h4 style={{ color: '#FFFFFF', fontSize: '0.95rem', fontWeight: 600, margin: '0 0 1rem', letterSpacing: '0.02em' }}>
+              Navegação
+            </h4>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+              <li><Link to="/" style={{ color: '#C7BFB5', fontSize: '0.88rem', textDecoration: 'none' }}>Página Inicial</Link></li>
+              <li><Link to="/?finalidade=Venda" style={{ color: '#C7BFB5', fontSize: '0.88rem', textDecoration: 'none' }}>Comprar Imóvel</Link></li>
+              <li><Link to="/?finalidade=Locação" style={{ color: '#C7BFB5', fontSize: '0.88rem', textDecoration: 'none' }}>Alugar Imóvel</Link></li>
+              <li><Link to="/anunciar" style={{ color: '#C7BFB5', fontSize: '0.88rem', textDecoration: 'none' }}>Anunciar meu Imóvel</Link></li>
+              <li><Link to="/admin/login" style={{ color: '#8C827A', fontSize: '0.82rem', textDecoration: 'none' }}>Acesso do Corretor / Painel</Link></li>
+            </ul>
+          </div>
 
-            <div>
-              <h4 style={{ color: '#FFFFFF', fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.85rem' }}>Atendimento</h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', color: '#D1CAC3', fontSize: '0.86rem' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Phone size={15} color="#C59B27" />
-                  <span>{EMPRESA_CONFIG.telefone}</span>
-                </div>
-                <a
-                  href={`https://wa.me/${EMPRESA_CONFIG.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#25D366', fontWeight: 600, textDecoration: 'none' }}
-                >
-                  <MessageCircle size={16} />
-                  <span>{EMPRESA_CONFIG.whatsappFormatado}</span>
-                </a>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <Mail size={15} color="#C59B27" />
-                  <span>{EMPRESA_CONFIG.email}</span>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#8C827A', fontSize: '0.8rem' }}>
-                  <Clock size={14} />
-                  <span>{EMPRESA_CONFIG.horarioAtendimento}</span>
-                </div>
+          {/* Coluna 3: Atendimento Oficial */}
+          <div className="blois-footer__col-contact">
+            <h4 style={{ color: '#FFFFFF', fontSize: '0.95rem', fontWeight: 600, margin: '0 0 1rem', letterSpacing: '0.02em' }}>
+              Atendimento Oficial
+            </h4>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.88rem', color: '#C7BFB5' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <Phone size={16} color="#C59B27" style={{ flexShrink: 0 }} />
+                <span>{EMPRESA_CONFIG.telefone}</span>
+              </div>
+              <a
+                href={`https://wa.me/${EMPRESA_CONFIG.whatsapp}?text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20im%C3%B3veis`}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#25D366', fontWeight: 600, textDecoration: 'none' }}
+              >
+                <MessageCircle size={17} style={{ flexShrink: 0 }} />
+                <span>WhatsApp: {EMPRESA_CONFIG.whatsappFormatado}</span>
+              </a>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <Mail size={16} color="#C59B27" style={{ flexShrink: 0 }} />
+                <span>{EMPRESA_CONFIG.email}</span>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#8C827A', fontSize: '0.82rem' }}>
+                <Clock size={15} style={{ flexShrink: 0 }} />
+                <span>{EMPRESA_CONFIG.horarioAtendimento}</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Informações Técnicas e Exigências Legais do Conselho (CRECI / COFECI) */}
-        <div style={{
-          background: '#231F1C',
-          border: '1px solid #38312B',
-          borderRadius: '12px',
-          padding: '1.25rem 1.5rem',
-          margin: '2rem 0',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.75rem', flexWrap: 'wrap' }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.4rem',
-              background: '#C59B27',
-              color: '#1A1817',
-              padding: '0.25rem 0.65rem',
-              borderRadius: '6px',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              letterSpacing: '0.04em'
-            }}>
-              <ShieldCheck size={14} />
+        <div className="blois-footer__legal-box">
+          <div className="blois-footer__legal-header">
+            <div className="blois-footer__badge-creci">
+              <ShieldCheck size={15} />
               <span>REGULAMENTADO CRECI</span>
             </div>
             <span style={{ color: '#FFFFFF', fontWeight: 700, fontSize: '0.95rem' }}>
               {EMPRESA_CONFIG.creci}
             </span>
-            <span style={{ color: '#8C827A', fontSize: '0.85rem' }}>•</span>
-            <span style={{ color: '#D1CAC3', fontSize: '0.85rem' }}>
+            <span className="blois-desktop-only" style={{ color: '#6E665F' }}>•</span>
+            <span className="blois-footer__resp-tecnico">
               {EMPRESA_CONFIG.creciResponsavel}
             </span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '0.75rem', fontSize: '0.82rem', color: '#B0A79E', marginBottom: '0.85rem' }}>
-            <div>
-              <strong style={{ color: '#ECE7DE' }}>Razão Social:</strong> {EMPRESA_CONFIG.razaoSocial}
+          {/* Grid 2x2 Perfeitamente Alinhado */}
+          <div className="blois-footer__legal-grid">
+            <div className="blois-footer__legal-item">
+              <Building2 size={15} color="#C59B27" style={{ flexShrink: 0 }} />
+              <div>
+                <span className="blois-footer__label">Razão Social:</span>
+                <span className="blois-footer__value">{EMPRESA_CONFIG.razaoSocial}</span>
+              </div>
             </div>
-            <div>
-              <strong style={{ color: '#ECE7DE' }}>CNPJ:</strong> {EMPRESA_CONFIG.cnpj}
+
+            <div className="blois-footer__legal-item">
+              <FileText size={15} color="#C59B27" style={{ flexShrink: 0 }} />
+              <div>
+                <span className="blois-footer__label">CNPJ:</span>
+                <span className="blois-footer__value">{EMPRESA_CONFIG.cnpj}</span>
+              </div>
             </div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-              <MapPin size={14} color="#C59B27" style={{ flexShrink: 0 }} />
-              <span><strong>Endereço:</strong> {EMPRESA_CONFIG.endereco} — {EMPRESA_CONFIG.cidade} / {EMPRESA_CONFIG.estado} — CEP: {EMPRESA_CONFIG.cep}</span>
+
+            <div className="blois-footer__legal-item blois-footer__legal-item--span2">
+              <MapPin size={15} color="#C59B27" style={{ flexShrink: 0 }} />
+              <div>
+                <span className="blois-footer__label">Sede / Endereço Físico:</span>
+                <span className="blois-footer__value">
+                  {EMPRESA_CONFIG.endereco} — {EMPRESA_CONFIG.cidade}/{EMPRESA_CONFIG.estado} — CEP {EMPRESA_CONFIG.cep}
+                </span>
+              </div>
             </div>
           </div>
 
-          <p style={{ color: '#7E756D', fontSize: '0.75rem', margin: 0, lineHeight: 1.4, borderTop: '1px solid #2E2823', paddingTop: '0.65rem' }}>
-            * As atividades de corretagem e intermediação imobiliária são executadas sob estrito cumprimento da Lei Federal nº 6.530/1978 e do Decreto nº 81.871/1978, registradas e fiscalizadas pelo Conselho Regional de Corretores de Imóveis. As informações, valores e disponibilidades dos imóveis estão sujeitos a alterações a qualquer momento.
+          <p className="blois-footer__disclaimer">
+            * As atividades de corretagem e intermediação imobiliária são executadas sob estrito cumprimento da Lei Federal nº 6.530/1978 e do Decreto nº 81.871/1978, registradas e fiscalizadas pelo Conselho Regional de Corretores de Imóveis (CRECI-SP). As informações, valores e disponibilidades dos imóveis estão sujeitos a confirmação junto aos corretores responsáveis.
           </p>
         </div>
 
         {/* Linha Final de Copyright */}
         <div className="blois-footer__copy">
           <span>© {new Date().getFullYear()} {EMPRESA_CONFIG.nomeFantasia}. Todos os direitos reservados.</span>
-          <span style={{ fontSize: '0.75rem', color: '#6E665F' }}>Plataforma AMP Rental</span>
+          <span style={{ fontSize: '0.78rem', color: '#6E665F' }}>Plataforma Imobiliária Profissional</span>
         </div>
       </div>
     </footer>

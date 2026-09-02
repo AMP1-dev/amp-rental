@@ -22,38 +22,21 @@ export default function Header() {
           {menuAberto ? <X size={20} /> : <Menu size={20} />}
         </button>
 
-        {/* Logo (Centro no Mobile, Esquerda no Desktop) + CRECI */}
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Link to="/" className="blois-logo">
-            {EMPRESA_CONFIG.logoUrl ? (
-              <img
-                src={EMPRESA_CONFIG.logoUrl}
-                alt={EMPRESA_CONFIG.nomeFantasia}
-                style={{ maxHeight: '42px', objectFit: 'contain' }}
-              />
-            ) : (
-              <>
-                <span className="blois-logo__title">{EMPRESA_CONFIG.nomeFantasia}</span>
-                <span className="blois-logo__subtitle">{EMPRESA_CONFIG.slogan}</span>
-              </>
-            )}
-          </Link>
-          <span
-            className="blois-desktop-only"
-            style={{
-              fontSize: '0.73rem',
-              fontWeight: 600,
-              color: '#8C827A',
-              marginLeft: '0.85rem',
-              borderLeft: '1px solid #D5CEC5',
-              paddingLeft: '0.85rem',
-              letterSpacing: '0.02em',
-            }}
-          >
-            {EMPRESA_CONFIG.creci}
-          </span>
-        </div>
-
+        {/* Logo Blois (Centro no Mobile, Esquerda no Desktop) */}
+        <Link to="/" className="blois-logo">
+          {EMPRESA_CONFIG.logoUrl ? (
+            <img
+              src={EMPRESA_CONFIG.logoUrl}
+              alt={EMPRESA_CONFIG.nomeFantasia}
+              style={{ maxHeight: '40px', objectFit: 'contain' }}
+            />
+          ) : (
+            <>
+              <span className="blois-logo__title">Blois</span>
+              <span className="blois-logo__subtitle">Aqui se faz negócio</span>
+            </>
+          )}
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="blois-nav">
@@ -91,8 +74,25 @@ export default function Header() {
           </a>
         </nav>
 
-        {/* Actions (Anunciar + Login) */}
-        <div className="blois-header__actions">
+        {/* Actions (CRECI + Anunciar + Login) */}
+        <div className="blois-header__actions" style={{ display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
+          <span
+            className="blois-desktop-only"
+            style={{
+              fontSize: '0.75rem',
+              color: '#6B6259',
+              fontWeight: 600,
+              letterSpacing: '0.02em',
+              background: '#F7F4EE',
+              padding: '0.35rem 0.75rem',
+              borderRadius: '6px',
+              border: '1px solid #E5DFD5',
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {EMPRESA_CONFIG.creci}
+          </span>
+
           <Link to="/anunciar" className="blois-btn-anunciar blois-desktop-only">
             <PlusCircle size={16} />
             <span>Anunciar Imóvel</span>
@@ -107,6 +107,7 @@ export default function Header() {
             <User size={18} />
           </Link>
         </div>
+
       </div>
 
       {/* Drawer Mobile Menu */}

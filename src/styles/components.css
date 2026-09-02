@@ -1204,42 +1204,116 @@
 .blois-footer {
   background: #1A1817;
   color: #FAF7F2;
-  padding: 3rem 1.5rem 2rem;
+  padding: 3.5rem 1.5rem 2.5rem;
   margin-top: 5rem;
 }
 
-
 .blois-footer__inner {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.25rem;
 }
 
-.blois-footer__top {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  justify-content: space-between;
+.blois-footer__grid-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
   border-bottom: 1px solid #332D27;
-  padding-bottom: 2rem;
+  padding-bottom: 2.5rem;
 }
 
 @media (min-width: 768px) {
-  .blois-footer__top {
-    flex-direction: row;
-    align-items: center;
+  .blois-footer__grid-top {
+    grid-template-columns: 1.6fr 1fr 1.2fr;
+    gap: 3rem;
   }
+}
+
+.blois-footer__legal-box {
+  background: #231F1C;
+  border: 1px solid #38312B;
+  border-radius: 12px;
+  padding: 1.5rem 1.75rem;
+}
+
+.blois-footer__legal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.blois-footer__badge-creci {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #C59B27;
+  color: #1A1817;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.blois-footer__resp-tecnico {
+  color: #D1CAC3;
+  font-size: 0.85rem;
+}
+
+.blois-footer__legal-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #2E2823;
+}
+
+@media (min-width: 768px) {
+  .blois-footer__legal-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .blois-footer__legal-item--span2 {
+    grid-column: 1 / -1;
+  }
+}
+
+.blois-footer__legal-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+}
+
+.blois-footer__label {
+  font-weight: 700;
+  color: #ECE7DE;
+  margin-right: 0.4rem;
+}
+
+.blois-footer__value {
+  color: #B0A79E;
+}
+
+.blois-footer__disclaimer {
+  color: #7E756D;
+  font-size: 0.75rem;
+  margin: 1rem 0 0;
+  line-height: 1.5;
 }
 
 .blois-footer__copy {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: #8C827A;
+  padding-top: 0.5rem;
 }
+
 
 
 /* ============================================================
