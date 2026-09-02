@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { User, Menu, X, PlusCircle, Home, Key, Tag, Phone } from 'lucide-react'
+import { EMPRESA_CONFIG } from '../config/empresa'
 
 export default function Header() {
   const [menuAberto, setMenuAberto] = useState(false)
@@ -21,11 +22,38 @@ export default function Header() {
           {menuAberto ? <X size={20} /> : <Menu size={20} />}
         </button>
 
-        {/* Logo Blois (Centro no Mobile, Esquerda no Desktop) */}
-        <Link to="/" className="blois-logo">
-          <span className="blois-logo__title">Blois</span>
-          <span className="blois-logo__subtitle">Aqui se faz negócio</span>
-        </Link>
+        {/* Logo (Centro no Mobile, Esquerda no Desktop) + CRECI */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <Link to="/" className="blois-logo">
+            {EMPRESA_CONFIG.logoUrl ? (
+              <img
+                src={EMPRESA_CONFIG.logoUrl}
+                alt={EMPRESA_CONFIG.nomeFantasia}
+                style={{ maxHeight: '42px', objectFit: 'contain' }}
+              />
+            ) : (
+              <>
+                <span className="blois-logo__title">{EMPRESA_CONFIG.nomeFantasia}</span>
+                <span className="blois-logo__subtitle">{EMPRESA_CONFIG.slogan}</span>
+              </>
+            )}
+          </Link>
+          <span
+            className="blois-desktop-only"
+            style={{
+              fontSize: '0.73rem',
+              fontWeight: 600,
+              color: '#8C827A',
+              marginLeft: '0.85rem',
+              borderLeft: '1px solid #D5CEC5',
+              paddingLeft: '0.85rem',
+              letterSpacing: '0.02em',
+            }}
+          >
+            {EMPRESA_CONFIG.creci}
+          </span>
+        </div>
+
 
         {/* Desktop Navigation */}
         <nav className="blois-nav">

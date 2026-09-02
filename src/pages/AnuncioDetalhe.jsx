@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import Header from '../components/Header'
+import Footer from '../components/Footer'
 import PropertyCard from '../components/PropertyCard'
+
 import { supabase } from '../lib/supabaseClient'
 import { getFotoUrl } from '../lib/images'
 import { formatarPreco, linkWhatsapp } from '../lib/format'
@@ -744,33 +746,11 @@ export default function AnuncioDetalhe() {
       </nav>
 
 
-      {/* Footer Blois */}
-      <footer className="blois-footer blois-desktop-only">
-        <div className="blois-footer__inner">
-          <div className="blois-footer__top">
-            <div>
-              <span style={{ fontFamily: 'Fraunces, serif', fontSize: '2rem', fontWeight: 700, color: '#FFFFFF' }}>
-                Blois
-              </span>
-              <p style={{ color: '#8C827A', fontSize: '0.9rem', marginTop: '0.35rem' }}>
-                Assessoria imobiliária completa para compra, venda e locação.
-              </p>
-            </div>
-            <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-              <a href="/?finalidade=Venda" style={{ color: '#D1CAC3', fontSize: '0.9rem' }}>Comprar Imóvel</a>
-              <a href="/?finalidade=Locação" style={{ color: '#D1CAC3', fontSize: '0.9rem' }}>Alugar Imóvel</a>
-              <a href="/anunciar" style={{ color: '#D1CAC3', fontSize: '0.9rem' }}>Anunciar</a>
-              <a href="https://wa.me/5519999999999" target="_blank" rel="noopener noreferrer" style={{ color: '#C59B27', fontWeight: 600, fontSize: '0.9rem' }}>Falar no WhatsApp</a>
-            </div>
-          </div>
-          <div className="blois-footer__copy">
-            <span>© 2026 Blois Imóveis / AMP Rental. Todos os direitos reservados.</span>
-            <span>CRECI SP 123456</span>
-          </div>
-        </div>
-      </footer>
+      {/* Footer Blois com Conformidade CRECI */}
+      <Footer />
     </div>
   )
 }
+
 
 
