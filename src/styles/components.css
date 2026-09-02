@@ -1,268 +1,1246 @@
 /* ============================================================
-   VITRINE — Fase 2
+   BLOIS LUXURY DESIGN SYSTEM (Layouts Aprovados)
    ============================================================ */
 
-.container {
-  max-width: var(--container);
+/* ---------- Header Blois ---------- */
+.blois-header {
+  background: #FFFFFF;
+  border-bottom: 1px solid #EAE6DF;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.blois-header__inner {
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.25rem 4rem;
-}
-
-.container--estreito {
-  max-width: 760px;
-}
-
-/* ---------- header ---------- */
-.header {
+  padding: 1rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 1.5rem 1.25rem;
+  gap: 1.5rem;
 }
 
-.header__logo {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--brown-deep);
+.blois-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  text-decoration: none;
 }
 
-.header__cta {
-  font-size: 0.85rem;
+.blois-logo__title {
+  font-family: 'Fraunces', serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #1A1817;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.blois-logo__subtitle {
+  font-size: 0.75rem;
+  color: #8C827A;
   font-weight: 500;
-  padding: 0.6rem 1.1rem;
-  border: 1px solid var(--brown-deep);
-  border-radius: var(--radius);
-  color: var(--brown-deep);
-  transition: background 0.15s ease, color 0.15s ease;
+  display: none;
 }
 
-.header__cta:hover {
-  background: var(--brown-deep);
-  color: var(--bg);
-}
-
-/* ---------- estados ---------- */
-.estado {
-  text-align: center;
-  color: var(--ink-soft);
-  padding: 3rem 1rem;
-}
-
-.estado--erro {
-  color: var(--danger);
-}
-
-.secao {
-  margin-bottom: 2.5rem;
-}
-
-/* ---------- grid (estilo Instagram: quadrado, foto-primeiro) ---------- */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 4px;
-}
-
-@media (max-width: 640px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
+@media (min-width: 768px) {
+  .blois-logo__subtitle {
+    display: inline-block;
   }
 }
 
-/* ---------- cartão ---------- */
-.card {
-  display: block;
+.blois-nav {
+  display: none;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+@media (min-width: 860px) {
+  .blois-nav {
+    display: flex;
+  }
+}
+
+.blois-nav__link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #4A443F;
+  transition: color 0.15s ease;
   position: relative;
 }
 
-.card__foto {
+.blois-nav__link:hover,
+.blois-nav__link--active {
+  color: #1A1817;
+}
+
+.blois-mobile-only {
+  display: none !important;
+}
+
+.blois-desktop-only {
+  display: block !important;
+}
+
+@media (max-width: 768px) {
+  .blois-mobile-only {
+    display: block !important;
+  }
+  .blois-desktop-only {
+    display: none !important;
+  }
+  .blois-header__inner {
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  .blois-logo {
+    margin: 0 auto;
+  }
+}
+
+
+.blois-btn-anunciar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  background: #26221F;
+  color: #FFFFFF;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.blois-btn-anunciar:hover {
+  background: #433C37;
+  transform: translateY(-1px);
+}
+
+
+.blois-btn-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #EAE6DF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1A1817;
+  background: #FAF7F2;
+  transition: background 0.15s ease;
+}
+
+.blois-btn-icon:hover {
+  background: #EFECE6;
+}
+
+/* ---------- Hero Search Box (Barra de Busca Estilo Blois) ---------- */
+.blois-hero-search {
+  background: #181E24;
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+  margin: -2rem auto 2.5rem;
+  max-width: 1200px;
   position: relative;
-  aspect-ratio: 1 / 1;
+  z-index: 10;
+}
+
+.blois-hero-search__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.blois-search-field {
+  background: #242C35;
+  border: 1px solid #36414E;
+  border-radius: 10px;
+  padding: 0.65rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.blois-search-field input,
+.blois-search-field select {
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-size: 0.9rem;
+  width: 100%;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+}
+
+.blois-search-field select option {
+  background: #242C35;
+  color: #FFFFFF;
+}
+
+.blois-btn-buscar {
+  background: #C59B27;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  padding: 0.85rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+  height: 100%;
+  min-height: 44px;
+}
+
+.blois-btn-buscar:hover {
+  background: #D9AC2E;
+  transform: translateY(-1px);
+}
+
+/* ---------- Imóveis em Destaque (Carrossel / Banner Hero) ---------- */
+.blois-featured-banner {
+  position: relative;
+  border-radius: 16px;
   overflow: hidden;
-  background: var(--sand);
+  height: 480px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  margin-bottom: 3.5rem;
 }
 
-.card__foto img {
+@media (max-width: 768px) {
+  .blois-featured-banner {
+    height: 340px;
+  }
+}
+
+.blois-featured-banner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  transition: transform 0.4s ease;
 }
 
-.card:hover .card__foto img {
-  transform: scale(1.04);
-}
-
-.card__foto-vazia {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--sand), var(--line));
-}
-
-.card__overlay {
+.blois-featured-banner__overlay {
   position: absolute;
   inset: auto 0 0 0;
-  padding: 0.9rem 0.75rem 0.7rem;
-  background: linear-gradient(to top, rgba(33, 27, 22, 0.75), transparent);
-  color: #fff;
+  background: linear-gradient(to top, rgba(16, 21, 26, 0.92) 0%, rgba(16, 21, 26, 0.6) 60%, transparent 100%);
+  padding: 2.5rem 2rem 1.75rem;
+  color: #FFFFFF;
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.5rem;
 }
 
-.card__preco {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1rem;
+@media (min-width: 768px) {
+  .blois-featured-banner__overlay {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
 }
 
-.card__local {
-  font-size: 0.75rem;
-  opacity: 0.9;
+.blois-featured-banner__info h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 0.35rem;
 }
 
-.card__fita {
-  position: absolute;
-  top: 0.6rem;
-  left: -0.4rem;
-  background: var(--brown-mid);
-  color: #fff;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 0.25rem 0.6rem;
-  box-shadow: 0 2px 6px rgba(33, 27, 22, 0.25);
-}
-
-/* ---------- carrossel ---------- */
-.carrossel {
-  position: relative;
-}
-
-.carrossel__trilho {
+.blois-featured-banner__specs {
+  font-size: 0.95rem;
+  color: #D1CAC3;
   display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
 }
 
-.carrossel__trilho::-webkit-scrollbar {
-  display: none;
+.blois-btn-gold {
+  background: #C59B27;
+  color: #FFFFFF;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  transition: background 0.15s ease;
 }
 
-.carrossel__item {
-  flex: 0 0 280px;
-  scroll-snap-align: start;
+.blois-btn-gold:hover {
+  background: #D9AC2E;
+}
+
+/* ---------- Blois Property Cards (Grid "Confira as Novidades") ---------- */
+.blois-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1.5rem;
 }
 
 @media (max-width: 640px) {
-  .carrossel__item {
-    flex-basis: 78vw;
+  .blois-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }
 
-.carrossel__seta {
-  display: none;
-}
-
-@media (min-width: 900px) {
-  .carrossel__seta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 2.25rem;
-    height: 2.25rem;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    background: var(--bg-card);
-    font-size: 1.3rem;
-    color: var(--brown-deep);
-    box-shadow: var(--shadow-card);
-  }
-
-  .carrossel__seta--esq {
-    left: -1.1rem;
-  }
-
-  .carrossel__seta--dir {
-    right: -1.1rem;
-  }
-}
-
-/* ---------- página de detalhe ---------- */
-.detalhe {
-  padding-top: 1rem;
-}
-
-.detalhe__galeria {
+.blois-card {
+  background: #FFFFFF;
+  border: 1px solid #EAE6DF;
+  border-radius: 14px;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  margin-bottom: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  text-decoration: none;
+  color: inherit;
 }
 
-.detalhe__galeria img {
+.blois-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(33, 27, 22, 0.08);
+  border-color: #D9D2C7;
+}
+
+.blois-card__media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: #ECE7DE;
+  overflow: hidden;
+}
+
+.blois-card__media img {
   width: 100%;
-  border-radius: var(--radius-card);
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
 }
 
-.detalhe__info h1 {
-  font-size: 1.5rem;
+.blois-card:hover .blois-card__media img {
+  transform: scale(1.05);
+}
+
+.blois-card__tag {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: #1D242C;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.blois-card__body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blois-card__title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1A1817;
+  line-height: 1.35;
+  margin-bottom: 0.35rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blois-card__local {
+  font-size: 0.82rem;
+  color: #7A726A;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-bottom: 0.85rem;
+}
+
+.blois-card__price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #F0ECE6;
+}
+
+.blois-card__price {
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1A1817;
+}
+
+.blois-card__specs-row {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-size: 0.8rem;
+  color: #635B53;
+  margin-bottom: 1.1rem;
+}
+
+.blois-card__spec-item {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.blois-card__btn {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1px solid #1A1817;
+  border-radius: 8px;
+  background: transparent;
+  color: #1A1817;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.15s ease, color 0.15s ease;
+  margin-top: auto;
+}
+
+.blois-card:hover .blois-card__btn {
+  background: #1A1817;
+  color: #FFFFFF;
+}
+
+/* ============================================================
+   PÁGINA DE DETALHES DO IMÓVEL (Layout Aprovado)
+   ============================================================ */
+
+.blois-detail-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 5rem;
+}
+
+.blois-detail-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .blois-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ---------- Galeria de Fotos Aprovada (1 Hero + 4 Miniaturas Verticais) ---------- */
+.blois-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 130px;
+  gap: 0.75rem;
+  height: 480px;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 640px) {
+  .blois-gallery {
+    grid-template-columns: 1fr;
+    height: 320px;
+  }
+  .blois-gallery__thumbs {
+    display: none !important;
+  }
+}
+
+.blois-gallery__hero {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #E8E4DA;
+  height: 100%;
+}
+
+.blois-gallery__hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blois-gallery__thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  height: 100%;
+}
+
+.blois-gallery__thumb {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #E8E4DA;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.15s ease, opacity 0.15s ease;
+  position: relative;
+}
+
+.blois-gallery__thumb:hover {
+  opacity: 0.9;
+}
+
+.blois-gallery__thumb--active {
+  border-color: #C59B27;
+}
+
+.blois-gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Header do Detalhe ---------- */
+.blois-detail__header {
+  margin-bottom: 1.75rem;
+}
+
+.blois-detail__tag-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.blois-tag-finalidade {
+  background: #EFECE6;
+  color: #1A1817;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 4px;
+}
+
+.blois-tag-codigo {
+  color: #8C827A;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.blois-detail__title {
+  font-family: 'Fraunces', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #1A1817;
+  line-height: 1.2;
   margin-bottom: 0.4rem;
 }
 
-.detalhe__preco {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--brown-deep);
-  margin: 0.2rem 0;
+@media (max-width: 640px) {
+  .blois-detail__title {
+    font-size: 1.65rem;
+  }
 }
 
-.detalhe__local {
-  color: var(--ink-soft);
-  margin-bottom: 0.9rem;
-}
-
-.detalhe__specs {
-  list-style: none;
+.blois-detail__local {
+  font-size: 1rem;
+  color: #6B6259;
   display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ---------- Specs Cards (Grid com 6 Cards Aprovados) ---------- */
+.blois-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+  margin-bottom: 2rem;
+}
+
+.blois-spec-card {
+  background: #F8F6F1;
+  border: 1px solid #EAE6DF;
+  border-radius: 12px;
+  padding: 1rem 1.15rem;
+  display: flex;
+  align-items: center;
   gap: 0.9rem;
-  padding: 0;
-  margin: 0 0 1rem;
-  font-size: 0.9rem;
-  color: var(--ink-soft);
 }
 
-.detalhe__descricao {
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
+.blois-spec-card__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: #1A1817;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
-.botao-whatsapp {
-  display: inline-block;
-  background: var(--brown-deep);
-  color: #fff;
-  font-weight: 600;
-  padding: 0.85rem 1.5rem;
-  border-radius: var(--radius);
+.blois-spec-card__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.blois-spec-card__label {
+  font-size: 0.75rem;
+  color: #7A726A;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.blois-spec-card__value {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1A1817;
+}
+
+.blois-spec-card--full {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Descrição e Mapa Lado a Lado (Layout Aprovado) ---------- */
+.blois-bottom-row {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 1.5rem;
+  align-items: stretch;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .blois-bottom-row {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.blois-desc-box {
+  background: #FFFFFF;
+  border: 1px solid #EAE6DF;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.blois-desc-box h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: #1A1817;
+}
+
+.blois-desc-box p {
+  color: #4A443F;
+  line-height: 1.6;
+  font-size: 0.92rem;
+  white-space: pre-line;
+  margin: 0;
+}
+
+/* ---------- Google Maps Box Stylized ---------- */
+.blois-map-box {
+  background: #1A2027;
+  color: #FFFFFF;
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  width: 100%;
+  position: relative;
+  overflow: hidden;
+  min-height: 180px;
 }
 
-.botao-whatsapp:hover {
-  background: var(--brown-mid);
+.blois-map-box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(#2A3440 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  opacity: 0.5;
 }
+
+.blois-map-box__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.blois-map-box__pin {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #1A2027;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.blois-map-box h4 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.blois-btn-map {
+  background: transparent;
+  border: 1px solid #FFFFFF;
+  color: #FFFFFF;
+  padding: 0.55rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+  margin-top: 0.25rem;
+}
+
+.blois-btn-map:hover {
+  background: #FFFFFF;
+  color: #1A2027;
+}
+
+/* ---------- Sidebar Corretor (Broker Card Aprovado) ---------- */
+.blois-broker-card {
+  background: #FFFFFF;
+  border: 1px solid #EAE6DF;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 30px rgba(33, 27, 22, 0.05);
+}
+
+.blois-broker-card__photo-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  aspect-ratio: 1.1 / 1;
+  background: #ECE7DE;
+}
+
+.blois-broker-card__photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blois-broker-card__badge {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1A1817;
+  color: #FFFFFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.blois-broker-card__label {
+  font-size: 0.72rem;
+  color: #8C827A;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.blois-broker-card__name {
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1A1817;
+  margin: 0.15rem 0 0.2rem;
+}
+
+.blois-broker-card__creci {
+  font-size: 0.78rem;
+  color: #7A726A;
+  margin-bottom: 0.85rem;
+}
+
+.blois-broker-card__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #F0ECE6;
+}
+
+.blois-broker-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: #38332E;
+  text-decoration: none;
+}
+
+.blois-broker-contact-item:hover {
+  color: #C59B27;
+}
+
+.blois-broker-contact-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #1A1817;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.blois-broker-card__about {
+  font-size: 0.82rem;
+  color: #6B6259;
+  line-height: 1.45;
+  margin-bottom: 1.15rem;
+}
+
+.blois-btn-whatsapp-hero {
+  background: #1A1817;
+  color: #FFFFFF;
+  width: 100%;
+  padding: 0.85rem 1.15rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: background 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 4px 14px rgba(26, 24, 23, 0.2);
+}
+
+.blois-btn-whatsapp-hero:hover {
+  background: #332E2A;
+  transform: translateY(-1px);
+}
+
+/* ---------- Imóveis Relacionados na Sidebar (Abaixo do Botão) ---------- */
+.blois-sidebar-related {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #F0ECE6;
+}
+
+.blois-sidebar-related__title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1A1817;
+  margin-bottom: 0.85rem;
+}
+
+.blois-sidebar-related__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+}
+
+.blois-sidebar-related__card {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #EAE6DF;
+  text-decoration: none;
+  background: #FFFFFF;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.blois-sidebar-related__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.blois-sidebar-related__card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.blois-sidebar-related__card-price {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1A1817;
+  padding: 0.35rem 0.25rem;
+  text-align: center;
+  font-family: 'Fraunces', serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+/* ---------- Mobile Mockup Specific Components (Fase Mobile Aprovada) ---------- */
+/* ---------- Mobile Mockup Specific Components (Fase Mobile Aprovada) ---------- */
+.blois-mobile-summary-card {
+  display: flex !important;
+  flex-direction: column !important;
+  background: #FFFFFF;
+  border: 1px solid #EAE6DF;
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 1.25rem;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(33, 27, 22, 0.04);
+}
+
+.blois-mobile-summary-price {
+  font-family: 'Fraunces', serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1A1817;
+  line-height: 1.15;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.blois-mobile-summary-specs {
+  font-size: 0.8rem;
+  color: #6B6259;
+  font-weight: 500;
+  line-height: 1.4;
+  display: block;
+  word-break: break-word;
+}
+
+/* Grid de Características com Ícones (4 colunas) */
+.blois-caracteristicas-section {
+  display: block !important;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.blois-section-title-sm {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #1A1817;
+  font-family: 'Fraunces', serif;
+  margin-bottom: 0.75rem;
+}
+
+.blois-caracteristicas-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0.45rem !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.blois-caracteristica-item {
+  background: #FFFFFF;
+  border: 1px solid #EAE6DF;
+  border-radius: 12px;
+  padding: 0.7rem 0.2rem;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 0.35rem;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  box-shadow: 0 1px 4px rgba(33, 27, 22, 0.02);
+  overflow: hidden !important;
+}
+
+.blois-caracteristica-item__icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1A1817;
+}
+
+.blois-caracteristica-item__label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #4A443F;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  padding: 0 2px;
+}
+
+/* Light Google Maps Card para Mobile */
+.blois-mobile-map-box {
+  background: #F4F6F8;
+  border: 1px solid #E2E8F0;
+  border-radius: 14px;
+  padding: 1.5rem 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 0.6rem;
+  width: 100%;
+  box-sizing: border-box;
+  background-image: radial-gradient(#CBD5E1 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+}
+
+.blois-mobile-map-box__pin {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1A2027;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.blois-btn-mobile-map {
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  color: #1A1817;
+  padding: 0.55rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: background 0.15s ease;
+}
+
+.blois-btn-mobile-map:hover {
+  background: #F9FAFB;
+}
+
+/* Card Horizontal do Corretor para Mobile */
+.blois-mobile-broker-card {
+  background: #FFFFFF;
+  border: 1px solid #EAE6DF;
+  border-radius: 14px;
+  padding: 0.85rem 1rem;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.6rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 2px 10px rgba(33, 27, 22, 0.04);
+}
+
+.blois-mobile-broker-card__left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.blois-mobile-broker-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: #ECE7DE;
+}
+
+.blois-mobile-broker-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.blois-mobile-broker-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1A1817;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.blois-mobile-broker-creci {
+  font-size: 0.75rem;
+  color: #7A726A;
+}
+
+.blois-mobile-broker-spec {
+  font-size: 0.7rem;
+  color: #A8A29E;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.blois-mobile-broker-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.blois-mobile-circle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1A1817;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: transform 0.1s ease, background 0.15s ease;
+}
+
+.blois-mobile-circle-btn--whatsapp {
+  background: #25D366;
+}
+
+.blois-mobile-circle-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Barra Inferior Fixa Mobile (Bottom Tab Bar) */
+.blois-bottom-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #EAE6DF;
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom, 0px));
+  z-index: 999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 768px) {
+  .blois-bottom-tab-bar {
+    display: grid;
+  }
+}
+
+.blois-bottom-tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #8C827A;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.blois-bottom-tab-item--active,
+.blois-bottom-tab-item:hover {
+  color: #1A1817;
+}
+
+/* ---------- Footer Blois ---------- */
+.blois-footer {
+  background: #1A1817;
+  color: #FAF7F2;
+  padding: 3rem 1.5rem 2rem;
+  margin-top: 5rem;
+}
+
+
+.blois-footer__inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.blois-footer__top {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  justify-content: space-between;
+  border-bottom: 1px solid #332D27;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .blois-footer__top {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.blois-footer__copy {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: #8C827A;
+}
+
 
 /* ============================================================
    FORMULÁRIO DE CADASTRO — Fase 3

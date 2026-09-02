@@ -1,12 +1,13 @@
 import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://placeholder.supabase.co'
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'placeholder'
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  console.error(
-    'Faltam as variáveis VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY. Confira o arquivo .env (veja .env.example).'
+if (!import.meta.env.VITE_SUPABASE_URL || !import.meta.env.VITE_SUPABASE_ANON_KEY) {
+  console.warn(
+    'VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY não configuradas. Usando catálogo local de contingência.'
   )
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
